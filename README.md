@@ -1,6 +1,5 @@
 # Provably Robust Deep Classifiers
 
-> UC Berkeley — EECS 127/227AT: Optimization Models in Engineering  
 > Based on the technique by [Wong & Kolter, 2018](https://arxiv.org/abs/1711.00851)
 
 ---
@@ -17,9 +16,9 @@ The core question: *can we guarantee that no small perturbation of an input will
 
 Standard neural network classifiers are surprisingly fragile. An adversary can apply a tiny, imperceptible perturbation to an input and completely change the classifier's prediction.
 
-![Adversarial Example](1774388827930_image.png)
+![Adversarial Example](Screenshot 2026-03-24 144513.png)
 
-> Adding a noise matrix scaled by just **0.005** causes the classifier to predict "airliner" instead of "pig" — despite the images looking identical to the human eye.
+> Adding a small perturbation changes model output while keeping the image visually similar.
 
 Formally, the adversary solves:
 
@@ -36,7 +35,7 @@ The adversary wants to find a perturbed input `x'` within an ε-ball of the orig
 
 We use a **three-layer feedforward neural network** with ReLU nonlinearity for the MNIST digit classification task.
 
-![Neural Network Architecture](1774388716195_image.png)
+![Neural Network Architecture](Screenshot 2026-03-24 144536.png)
 
 The network maps an input image `z₁ ∈ ℝⁿ¹` through:
 1. **Affine layer:** `ẑ₂ = W₁z₁ + b₁`
@@ -66,7 +65,7 @@ This is the solution to a **first-order (linear) approximation** of the adversar
 
 The adversarial optimization is non-convex due to the ReLU nonlinearity. We relax it by replacing the ReLU constraint with its **convex hull**.
 
-![Convex ReLU Relaxation](1774388834966_image.png)
+![Convex ReLU Relaxation](Screenshot 2026-03-24 144625.png)
 
 For each neuron `j` with pre-activation bounds `[lⱼ, uⱼ]`, there are three cases:
 
@@ -131,9 +130,9 @@ This replaces the standard classifier scores with the dual network's robustness 
 
 ## MNIST Example Output
 
-![MNIST Classifier Output](1774388739481_image.png)
+![MNIST Classifier Output](Screenshot 2026-03-24 144713.png)
 
-The classifier outputs a score vector of length 10. Index 7 has the highest value (`6.815`), so the network correctly predicts the digit **7**.
+The classifier outputs a score vector of length 10. The top-scoring class is the predicted digit.
 
 ---
 
@@ -165,7 +164,3 @@ The classifier outputs a score vector of length 10. Index 7 has the highest valu
 
 ---
 
-## Course
-
-EECS 127/227AT — Optimization Models in Engineering  
-University of California, Berkeley — Spring 2024
