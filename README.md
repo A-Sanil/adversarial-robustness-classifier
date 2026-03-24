@@ -16,7 +16,7 @@ The core question: *can we guarantee that no small perturbation of an input will
 
 Standard neural network classifiers are surprisingly fragile. An adversary can apply a tiny, imperceptible perturbation to an input and completely change the classifier's prediction.
 
-![Adversarial Example](data/Screenshot 2026-03-24 144513.png)
+![Adversarial Example](data/adv_img1.png)
 
 > Adding a small perturbation changes model output while keeping the image visually similar.
 
@@ -35,7 +35,7 @@ The adversary wants to find a perturbed input `x'` within an ε-ball of the orig
 
 We use a **three-layer feedforward neural network** with ReLU nonlinearity for the MNIST digit classification task.
 
-![Neural Network Architecture](data/Screenshot 2026-03-24 144536.png)
+![Neural Network Architecture](data/adv_img2.png)
 
 The network maps an input image `z₁ ∈ ℝⁿ¹` through:
 1. **Affine layer:** `ẑ₂ = W₁z₁ + b₁`
@@ -65,7 +65,7 @@ This is the solution to a **first-order (linear) approximation** of the adversar
 
 The adversarial optimization is non-convex due to the ReLU nonlinearity. We relax it by replacing the ReLU constraint with its **convex hull**.
 
-![Convex ReLU Relaxation](data/Screenshot 2026-03-24 144625.png)
+![Convex ReLU Relaxation](data/adv_img3.png)
 
 For each neuron `j` with pre-activation bounds `[lⱼ, uⱼ]`, there are three cases:
 
@@ -130,7 +130,7 @@ This replaces the standard classifier scores with the dual network's robustness 
 
 ## MNIST Example Output
 
-![MNIST Classifier Output](data/Screenshot 2026-03-24 144713.png)
+![MNIST Classifier Output](data/adv_img4.png)
 
 The classifier outputs a score vector of length 10. The top-scoring class is the predicted digit.
 
